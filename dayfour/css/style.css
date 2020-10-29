@@ -1,0 +1,144 @@
+/* .text-center {
+    text-align: center;
+} */
+
+table tr td:first-child {
+    text-align: center;
+}
+
+table tr td:last-child {
+    /* text-align: center; */
+}
+
+table tr td:nth-child(2) {
+    text-align: center;
+}
+
+.input--focus:focus {
+    background-color: red;
+}
+
+.input--checkbox:checked {
+    padding: 10px;
+    outline: 3px solid #1e5180
+}
+
+.input--radio:checked {
+    outline: 3px solid #1e5180
+}
+
+
+/* active, visited, link, hover */
+
+.link--google:active {
+    color: yellow
+}
+
+.link--google:visited {
+    color: black;
+}
+
+.link--google:link {
+    color: green;
+}
+
+.link--google:hover {
+    color: violet;
+}
+
+
+/* pseudo elements: first-letter, first-line, after, before, selection */
+
+p::first-letter {
+    font-size: 30px;
+}
+
+p::first-line {
+    text-decoration: underline;
+}
+
+p::selection {
+    color: red;
+    background-color: blue;
+}
+
+p::after {
+    /* content: "Author: MrDat"; */
+}
+
+p::before {
+    /* content: "Author: MrDat"; */
+}
+
+
+/* Unit Mesuarement */
+
+.block {
+    width: 300px;
+    height: 300px;
+    border: 1px dotted black;
+}
+
+.block__child {
+    width: 50%;
+    height: 50%;
+    border: 1px solid black;
+}
+
+.first-block {
+    width: 50vw;
+    height: 50vh;
+    /* background-color: #F00; */
+    background-color: #FFFF00;
+}
+
+.second-block {
+    background-color: bisque;
+}
+
+
+/* table {
+    text-align: center;
+    color: blue;
+} */
+
+.block .block__child p {
+    /* font-family: 'Courier New', Courier, monospace; */
+    /* font-family: 'Syne Tactile', cursive;
+    font-weight: bold;
+    font-size: 30px;
+    font-variant: small-caps; */
+}
+
+p {
+    /* letter-spacing: 1px;
+    word-spacing: 10px;
+    text-indent: 30px;
+    text-decoration: underline;
+    text-transform: capitalize;
+    text-transform: lowercase;
+    white-space: nowrap;
+    text-shadow: 1px 1px black; */
+}
+
+.first-block {
+    background-image: url("../images/bg.png");
+    background-size: 50px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-repeat: repeat-y; */
+}
+
+p {
+    /* display: inline; */
+}
+
+.first-block {
+    width: 300px;
+}
+
+.first-block,
+.second-block {
+    display: inline-block;
+    /* float: left; */
+}

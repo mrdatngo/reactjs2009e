@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne+Tactile&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        table,
+        tr,
+        th,
+        td {
+            border: 1px solid black;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <caption>Student lists</caption>
+        <!-- <thead> -->
+        <tr>
+            <th rowspan="2">STT</th>
+            <th rowspan="2">Name</th>
+            <th colspan="2">Information</th>
+            <!-- <th>Information</th> -->
+        </tr>
+        <tr>
+            <!-- <th>STT</th>
+            <th>Name</th> -->
+            <th>Class</th>
+            <th>Organization</th>
+        </tr>
+        <!-- </thead> -->
+        <!-- <tbody> -->
+        <tr>
+            <td class="text-center">1</td>
+            <td>Hoang Nguyen</td>
+            <td rowspan="3">ReactJS</td>
+            <td rowspan="3">T3H</td>
+        </tr>
+        <tr>
+            <td class="text-center">2</td>
+            <td>
+                Chu Thi Hoa
+            </td>
+            <!-- <td>ReactJS</td> -->
+            <!-- <td>T3H</td> -->
+        </tr>
+        <tr>
+            <td class="text-center">3</td>
+            <td>Khiem Nguyen</td>
+            <!-- <td>ReactJS</td> -->
+            <!-- <td>T3H</td> -->
+        </tr>
+    </table>
+    <hr>
+    <!-- focus, checked -->
+    <input type="text" class="input--focus">
+    <input type="checkbox" class="input--checkbox">
+    <input type="radio" class="input--radio">
+
+    <a href="https://google.com" class="link--google" target="_blank">Go go google</a>
+    <a href="https://google.vn" class="link--google" target="_blank">Go go google</a>
+    <!-- pseudo elements: first-letter, first-line, after, before, selection  -->
+    <!-- <p> <span style="font-size: 30px;">T</span>his is class REACTJS20009E</p> -->
+    <p>This is class REACTJS20009E - Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae et amet blanditiis quasi nisi minus! Iusto deleniti similique voluptatum adipisci praesentium minus officia! Minima vel error officiis! Qui, consequuntur repellat.</p>
+    <!-- Unit Mesuarement -->
+    <hr>
+    <div class="block first-block">
+        <div class="block__child">
+            <!-- <p>This is test font family - Xin chào các bạn ạ</p> -->
+            <span>as</span>
+        </div>
+    </div>
+    <div class="block second-block"></div>
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML/CSS day two</title>
+    <style>
+        table,
+        tr,
+        th,
+        td {
+            border: 1px solid black;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- table, lists - rowspan - colspan -->
+    <div>
+        <table>
+            <caption>Student lists</caption>
+            <!-- <thead> -->
+            <tr>
+                <th rowspan="2">STT</th>
+                <th rowspan="2">Name</th>
+                <th colspan="2">Information</th>
+                <!-- <th>Information</th> -->
+            </tr>
+            <tr>
+                <!-- <th>STT</th>
+                <th>Name</th> -->
+                <th>Class</th>
+                <th>Organization</th>
+            </tr>
+            <!-- </thead> -->
+            <!-- <tbody> -->
+            <tr>
+                <td>1</td>
+                <td>Hoang Nguyen</td>
+                <td rowspan="3">ReactJS</td>
+                <td rowspan="3">T3H</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>
+                    Chu Thi Hoa
+                </td>
+                <!-- <td>ReactJS</td> -->
+                <!-- <td>T3H</td> -->
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Khiem Nguyen</td>
+                <!-- <td>ReactJS</td> -->
+                <!-- <td>T3H</td> -->
+            </tr>
+            <!-- </tbody> -->
+        </table>
+        <!-- ordered list -->
+        <ol type="i">
+            <li>Students
+                <ul style="list-style-type: square;">
+                    <li>Long Hoa</li>
+                    <li>Nguyen Khien</li>
+                    <li>Ngoc Sheila</li>
+                </ul>
+            </li>
+            <li>Chu Thi Hoa</li>
+            <li>Khiem Nguyen</li>
+        </ol>
+
+        <!-- unordered list -->
+        <ul style="list-style-type: square;">
+            <li>Long Hoa</li>
+            <li>Nguyen Khien</li>
+            <li>Ngoc Sheila</li>
+        </ul>
+    </div>
+    <!-- Block, Inline -->
+    <div>Block</div>
+    <span>Inline</span><span>Inline</span>
+    <p>Today is a <span>beautiful</span> day!</p>
+
+    <!-- iframe -->
+    <iframe src="./about.html" frameborder="1" height="300" width="300"></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/NbP52p9_vB4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/nbc7S3hWlgk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+    <!-- layouts -->
+    <hr>
+    <br><br><br>
+    <header>Header</header>
+    <!-- <div class="head">Header</div>
+    <div class="header">Header</div> -->
+    <nav>
+        <ul>
+            <li><a href="#">Students</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="#">Cars</a></li>
+        </ul>
+    </nav>
+    <section>
+        <aside>Side bar</aside>
+        <article>
+            <h3>This header of article</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti cupiditate, ipsam id eligendi soluta blanditiis quo nulla quasi aspernatur impedit debitis tenetur laudantium odio, ipsa dolorum. Ipsa iste illum nisi.</p>
+        </article>
+    </section>
+    <footer>footer</footer>
+
+    <!-- forms -->
+    <hr>
+    <form action="./login.js" method="GET">
+        <label for="username">User name</label>
+        <input type="text" id="username" name="username" placeholder="Enter username">
+        <br>
+        <label for="">Password</label>
+        <input type="password" name="password" placeholder="Enter password">
+        <br>
+        <label for="">Month of Birth</label>
+        <select name="month-of-birth" id="mob">
+            <optgroup label="Spring">
+                <option value="1">Tháng 1</option>
+                <option value="2">Tháng 2</option>
+                <option value="3">Tháng 3</option>
+            </optgroup>
+            <optgroup label="Summer">
+                <option value="4">Tháng 4</option>
+                <option value="5">Tháng 5</option>
+                <option value="6">Tháng 6</option>
+            </optgroup>
+            <optgroup label="Autumn">
+                <option value="7">Tháng 7</option>
+            </optgroup>
+        </select>
+        <input type="date" min="2020-10-21">
+        <input type="number" min="0" max="5">
+        <br>
+        <label for="">
+            Gender
+        </label>
+        <br>
+        <label for="male">Male</label>
+        <input type="radio" id="male" name="gender">
+        <label for="female">Female</label>
+        <input type="radio" id="female" name="gender">
+        <br>
+        <input type="checkbox" name="remember" id="rememberme"> <label for="rememberme">Remember me - Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolorem quis corporis neque suscipit harum nobis veniam vel adipisci, eius ex maxime itaque? Nostrum tempore officiis eius quos animi recusandae necessitatibus.</label>
+        <input type="submit" value="Login">
+        <button type="submit">Login</button>
+    </form>
+    <!-- Media -->
+    <audio src="./medias/nhac.mp3" controls></audio>
+    <video src=""></video>
+
+    <!-- graphic -->
+    <canvas width="100" height="100" style="border: 1px solid black">
+        Your browser is not support canvas
+    </canvas>
+</body>
+
+</html>

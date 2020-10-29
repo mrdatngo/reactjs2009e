@@ -1,0 +1,132 @@
+/* Reset browser */
+
+
+/* Perfect pixel */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* body,
+li,
+ol,
+ul {
+    margin: 0;
+    padding: 0;
+} */
+
+
+/* Tag selector */
+
+
+/* h3 {
+    color: red;
+} */
+
+#first-p {
+    color: yellow
+}
+
+.color__green {
+    color: green
+}
+
+p {
+    color: red;
+}
+
+.border__black {
+    border: 1px solid black;
+}
+
+
+/* article - post */
+
+
+/* article.post>.title {
+    text-align: center;
+    color: blue;
+} */
+
+.post>.title {
+    text-align: center;
+    color: green;
+}
+
+article>.title {
+    text-align: center;
+    color: blue;
+}
+
+h3+p {
+    background-color: gray;
+}
+
+h3~p {
+    font-weight: bold;
+}
+
+h3,
+p {
+    font-size: 15px;
+}
+
+
+/* .title[class] {
+    text-decoration: underline;
+} */
+
+
+/* [class="title"] {
+    text-decoration: underline;
+} */
+
+
+/* [class^="title"] {
+    text-decoration: underline;
+} */
+
+
+/* [class$="title"] {
+    text-decoration: underline;
+} */
+
+
+/* [class~="tit"] {
+    text-decoration: underline;
+} */
+
+
+/* [class*="title"] {
+    text-decoration: underline;
+} */
+
+
+/* [class|="title"] {
+    text-decoration: underline;
+} */
+
+
+/* Bootstrap */
+
+
+/* Layouts - row - col */
+
+
+/* sm-4 */
+
+
+/* [class*="col-sm"] {} */
+
+
+/* article h3:first-child {
+    font-size: 10px;
+    text-decoration: underline;
+} */
+
+article h3:first-child {
+    font-size: 10px;
+    text-decoration: underline;
+}
