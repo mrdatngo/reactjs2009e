@@ -1,0 +1,46 @@
+.navbar {
+    height: 60px;
+}
+
+.navbar .navbar__nav {
+    display: table;
+    height: 100%;
+}
+
+.navbar .navbar__nav .nav__item {
+    padding: 20px;
+    display: table-cell;
+    vertical-align: middle;
+    position: relative;
+}
+
+.navbar .navbar__nav .nav__item:hover {
+    background-color: gray;
+    cursor: pointer;
+}
+
+.navbar .navbar__nav .nav__item a {
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.navbar .submenu {
+    left: 0px;
+    top: 60px;
+}
+
+.navbar .submenu .submenu__item {
+    padding: 10px;
+    list-style-type: none;
+    width: 200px;
+}
+
+.navbar .submenu .submenu__item:hover {
+    background-color: gray;
+    cursor: pointer;
+}
+
+.navbar .navbar__nav .nav__item:hover .submenu {
+    position: absolute;
+    display: block;
+}

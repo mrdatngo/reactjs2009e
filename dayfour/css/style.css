@@ -137,8 +137,14 @@ p {
     width: 300px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .first-block,
 .second-block {
-    display: inline-block;
-    /* float: left; */
+    /* display: inline-block; */
+    width: 50%;
+    height: 400px;
+    float: left;
 }

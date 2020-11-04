@@ -1,0 +1,148 @@
+.block {
+    width: 300px;
+    height: 300px;
+}
+
+.first-block {
+    margin-left: 30px;
+    background-color: red;
+}
+
+.second-block {
+    background-color: green;
+}
+
+.block__child {
+    width: 150px;
+    height: 150px;
+    background-color: blue;
+}
+
+
+/* 
+.block__child {
+    position: relative;
+    left: 400px;
+    top: 40px;
+} */
+
+.first-block {
+    position: relative;
+}
+
+.block__child {
+    /* position: absolute; */
+    left: 20px;
+    top: 20px;
+    color: white;
+}
+
+.block--fixed {
+    position: fixed;
+    right: 150px;
+    bottom: 150px;
+    background-color: yellow;
+}
+
+.block--overflow {
+    /* overflow: hidden; */
+    /* overflow: scroll; */
+    overflow: auto;
+}
+
+@media only all and (max-width: 800px) {
+    .first-block {
+        background-color: green;
+    }
+}
+
+.block__transform {
+    background-color: violet;
+}
+
+.block__transform:hover {
+    /* transform: translate(50px, 30px); */
+    /* transform: rotate(45deg) */
+    transform: scale(2, 1.5);
+}
+
+
+/* word wrap */
+
+p {
+    word-wrap: break-word;
+}
+
+
+/* transition */
+
+.block__transition {
+    background-color: wheat;
+    transition: width 2s ease 0s, height 2s, background-color 2s;
+}
+
+.block__transition:hover {
+    height: 50px;
+    width: 600px;
+    background-color: red;
+}
+
+input {
+    transition: width 1s;
+    width: 100px;
+}
+
+input:focus {
+    width: 500px
+}
+
+.small-block {
+    width: 100px;
+    height: 100px;
+}
+
+.block__animation {
+    background-color: yellow;
+    position: relative;
+    /* animation: move-right 1s ease 0s infinite normal backwards; */
+    animation: move-around 2s ease 0s infinite normal;
+}
+
+@keyframes move-around {
+    0% {
+        left: 0px;
+        top: 0px;
+        background-color: red;
+    }
+    25% {
+        left: 200px;
+        top: 0px;
+        background-color: green;
+    }
+    50% {
+        left: 200px;
+        top: 200px;
+        background-color: blue;
+    }
+    75% {
+        left: 0px;
+        top: 200px;
+        background-color: yellow;
+    }
+    100% {
+        left: 0px;
+        top: 0px;
+        background-color: red;
+    }
+}
+
+@keyframes move-right {
+    from {
+        left: 0px;
+        background-color: red;
+    }
+    to {
+        left: 200px;
+        background-color: green;
+    }
+}

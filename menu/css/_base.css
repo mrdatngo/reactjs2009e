@@ -1,0 +1,21 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.theme--dark {
+    background-color: #202025;
+    color: #D2F4F4;
+}
+
+.theme--dark a:link,
+.theme--dark a:visited {
+    color: white;
+}
+
+.hidden {
+    display: none;
+}
+
+.theme--light {}
