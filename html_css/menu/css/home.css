@@ -1,5 +1,5 @@
 .navbar {
-    height: 60px;
+    height: 80px;
 }
 
 .navbar .navbar__nav {
@@ -43,4 +43,30 @@
 .navbar .navbar__nav .nav__item:hover .submenu {
     position: absolute;
     display: block;
+}
+
+
+/* menu icon */
+
+.navbar .menu-icon {
+    display: none;
+}
+
+.navbar .menu-icon {
+    height: 100%;
+    padding: 10px;
+}
+
+.navbar .menu-icon i {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+@media only all and (max-width: 375px) {
+    .navbar .menu-icon {
+        display: table;
+    }
+    .navbar .navbar__nav {
+        display: none;
+    }
 }
