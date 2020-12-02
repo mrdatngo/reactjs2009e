@@ -78,6 +78,8 @@ function Sound(src) {
 }
 
 var moveSound = new Sound("mp3/move.mp3");
+var eatSound = new Sound("mp3/eat.mp3");
+var loseSound = new Sound("mp3/lose.mp3");
 
 var player = new Player(0, 0, 50, 50, 50, imgElem);
 // var player2 = new Player(250, 250);
@@ -162,12 +164,14 @@ function checkWin() {
     const playerYIndex = player.x / 50;
     const playerXIndex = player.y / 50;
     if (map[playerXIndex][playerYIndex] === 1) {
+        eatSound.play();
         player.goldCollected(1);
         map[playerXIndex][playerYIndex] = 0;
     }
 
     if (map[playerXIndex][playerYIndex] === -1) {
         alert("You lose!");
+        loseSound.play();
         // reset game
         resetGame();
     }
