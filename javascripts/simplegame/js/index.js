@@ -61,6 +61,24 @@ class Player {
     };
 }
 
+// sounds
+function Sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function () {
+        this.sound.play();
+    };
+    this.stop = function () {
+        this.sound.pause();
+    };
+}
+
+var moveSound = new Sound("mp3/move.mp3");
+
 var player = new Player(0, 0, 50, 50, 50, imgElem);
 // var player2 = new Player(250, 250);
 
@@ -117,15 +135,29 @@ console.log("storeMap: ", storeMap);
 // fps = frame per second
 
 var numberOfGold = 0;
-map.forEach((cells) => {
-    cells.forEach((cell) => {
-        if (cell === 1) {
+// map.forEach((cells) => {
+//     cells.forEach((cell) => {
+//         if (cell === 1) {
+//             numberOfGold++;
+//         }
+//     });
+// });
+for (let i = 0; i < map.length; i++) {
+    for (let j = 0; j < map[i].length; j++) {
+        if (map[i][j] === 1) {
             numberOfGold++;
         }
-    });
-});
+    }
+}
+
+function resetGame() {
+    map = storeMap.map((cells) => cells.slice());
+    player.x = 0;
+    player.y = 0;
+}
 
 function checkWin() {
+    moveSound.play();
     // check player collect gold
     const playerYIndex = player.x / 50;
     const playerXIndex = player.y / 50;
@@ -137,13 +169,12 @@ function checkWin() {
     if (map[playerXIndex][playerYIndex] === -1) {
         alert("You lose!");
         // reset game
-        map = storeMap;
-        player.x = 0;
-        player.y = 0;
+        resetGame();
     }
 
     if (player.gold === numberOfGold) {
         alert("You win!");
+        resetGame();
     }
 }
 
