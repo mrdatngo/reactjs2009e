@@ -81,7 +81,7 @@ var moveSound = new Sound("mp3/move.mp3");
 var eatSound = new Sound("mp3/eat.mp3");
 var loseSound = new Sound("mp3/lose.mp3");
 
-var player = new Player(0, 0, 50, 50, 50, imgElem);
+var player = new Player(0, 0, 50, 50, 10, imgElem);
 // var player2 = new Player(250, 250);
 
 window.onload = () => {
@@ -161,8 +161,8 @@ function resetGame() {
 function checkWin() {
     moveSound.play();
     // check player collect gold
-    const playerYIndex = player.x / 50;
-    const playerXIndex = player.y / 50;
+    const playerYIndex = Math.round(player.x / 50);
+    const playerXIndex = Math.round(player.y / 50);
     if (map[playerXIndex][playerYIndex] === 1) {
         eatSound.play();
         player.goldCollected(1);
