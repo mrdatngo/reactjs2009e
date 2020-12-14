@@ -34,13 +34,13 @@ function callApi(apiUrl, method) {
 }
 
 // load();
-function loadTotalStatic() {}
-
-callApi("https://api.covid19api.com/summary", "GET").then((data) => {
-    console.log("loadTotalStatic: ", data);
-    totalConfirmedElem.innerText = data.Global.TotalConfirmed;
-    totalDeathsElem.innerText = data.Global.TotalDeaths;
-});
+function loadTotalStatic() {
+    callApi("https://api.covid19api.com/summary", "GET").then((data) => {
+        console.log("loadTotalStatic: ", data);
+        totalConfirmedElem.innerText = data.Global.TotalConfirmed;
+        totalDeathsElem.innerText = data.Global.TotalDeaths;
+    });
+}
 
 async function loadVietNamStatic() {
     let data = await callApi(
