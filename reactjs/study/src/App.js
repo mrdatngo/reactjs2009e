@@ -1,6 +1,6 @@
 import { Component } from "react";
-import Parent from "./lifecycle/Parent";
-
+// import Parent from "./lifecycle/Parent";
+import LoginPage from "./loginform/LoginPage";
 class App extends Component {
     constructor() {
         super();
@@ -8,7 +8,7 @@ class App extends Component {
     }
     render() {
         // console.log("App render");
-        return <Parent />;
+        return <LoginPage />;
     }
 }
 
