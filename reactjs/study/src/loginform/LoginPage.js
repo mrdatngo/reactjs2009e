@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import apis from "../apis";
+import { saveToken } from "../helper";
 
 class LoginPage extends Component {
     constructor() {
@@ -7,6 +8,8 @@ class LoginPage extends Component {
         this.state = {
             username: "",
             password: "",
+            loading: false,
+            message: "",
             errors: {},
         };
     }
@@ -64,10 +67,44 @@ class LoginPage extends Component {
             });
         }
         if (!errorUserMessage && !errorPassMessage) {
-            this.setState({ errors: {} });
+            this.setState({ errors: {}, loading: true, message: "" });
             // alert("Login di");
             const { username, password } = this.state;
-            apis.login({ username, password });
+            apis.login({ username, password })
+                .then((res) => {
+                    console.log("res: ", res);
+                    // redirect to homepage
+                    if (res.data.success) {
+                        let token = res.data.token;
+                        if (token) {
+                            saveToken(token);
+                            // alert("Redirect to HomePage");
+                            window.location = "/";
+                        } else {
+                            this.setState({ message: "Something went wrong!" });
+                        }
+                    } else {
+                        let message = "Something went wrong!"; // default message
+                        if (res.data.message) {
+                            // server message
+                            message = res.data.message;
+                        }
+                        this.setState({ message });
+                    }
+                    this.setState({ loading: false });
+                })
+                .catch((err) => {
+                    if (err.response) {
+                        console.log("err.response: ", err.response);
+                    } else {
+                        console.log("Check network");
+                    }
+                    this.setState({
+                        loading: false,
+                        message: "Something went wrong!",
+                    });
+                });
+
             // call api login with username and password
         }
     };
@@ -76,6 +113,7 @@ class LoginPage extends Component {
         return (
             <form style={{ textAlign: "center" }}>
                 <h3>Login</h3>
+                <p>{this.state.message}</p>
                 <label htmlFor="username">User name</label>
                 <input
                     type="text"
@@ -93,7 +131,12 @@ class LoginPage extends Component {
                 <span>{this.state.errors.password}</span>
                 {/* <button>Login</button> */}
                 <br />
-                <input onClick={this.submit} type="submit" value="Login" />
+                <input
+                    onClick={this.submit}
+                    type="submit"
+                    disabled={this.state.loading}
+                    value={this.state.loading ? "Submiting..." : "Login"}
+                />
             </form>
         );
     }
