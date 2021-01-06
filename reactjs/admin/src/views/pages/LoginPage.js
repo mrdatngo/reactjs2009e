@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { Form, Input, Button, Card } from "antd";
+import { Form, Input, Button, Card, Typography } from "antd";
+
+import store from "../../store";
+import { loginAction } from "../../actions";
 
 const layout = {
     labelCol: {
@@ -17,9 +20,25 @@ const tailLayout = {
 };
 
 class LoginPage extends Component {
+    state = {
+        isLoading: false,
+        errMessage: "",
+    };
+
+    componentDidMount() {
+        store.subscribe(() => {
+            console.log(store.getState());
+            this.setState({
+                isLoading: store.getState().isLoading,
+                errMessage: store.getState().errMessage,
+            });
+        });
+    }
+
     onFinish = (values) => {
-        console.log("Success:", values);
-        // apis.login(values);
+        // console.log("Success:", values);
+        // start action
+        loginAction(values);
     };
 
     onFinishFailed = (errorInfo) => {
@@ -52,7 +71,6 @@ class LoginPage extends Component {
                             // custom validator
                             {
                                 validator: (_, value) => {
-                                    console.log("value");
                                     if (value.length < 3) {
                                         return Promise.reject(
                                             "Username length must bigger than 3!"
@@ -83,9 +101,18 @@ class LoginPage extends Component {
                     >
                         <Input.Password />
                     </Form.Item>
+                    <p style={{ textAlign: "center" }}>
+                        <Typography.Text type="danger">
+                            {this.state.errMessage}
+                        </Typography.Text>
+                    </p>
 
                     <Form.Item {...tailLayout}>
-                        <Button type="primary" htmlType="submit">
+                        <Button
+                            type="primary"
+                            htmlType="submit"
+                            loading={this.state.isLoading}
+                        >
                             Submit
                         </Button>
                     </Form.Item>

@@ -14,6 +14,7 @@ module.exports = function (request, response) {
         response.status(200).json({
             success: true,
             token,
+            username,
         });
     } else {
         response.status(200).json({
