@@ -7,13 +7,14 @@ import {
     TeamOutlined,
     UserOutlined,
 } from "@ant-design/icons";
+import { Switch, Route, Link, Router } from "react-router-dom";
 
-import { Switch, Route, Link } from "react-router-dom";
+import routers from "../../routers";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
 
-class HomePage extends React.Component {
+class DefaultLayout extends React.Component {
     state = {
         collapsed: false,
     };
@@ -21,6 +22,34 @@ class HomePage extends React.Component {
     onCollapse = (collapsed) => {
         console.log(collapsed);
         this.setState({ collapsed });
+    };
+
+    menuElems = () => {
+        let result = [];
+        routers.forEach((router) => {
+            if (router.children) {
+                let submenuElems = [];
+                router.children.forEach((submenu) => {
+                    submenuElems.push(
+                        <Menu.Item key={submenu.path}>
+                            <Link to={submenu.path}>{submenu.name}</Link>
+                        </Menu.Item>
+                    );
+                });
+                result.push(
+                    <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+                        {submenuElems}
+                    </SubMenu>
+                );
+            } else {
+                result.push(
+                    <Menu.Item key={router.path} icon={router.icon}>
+                        <Link to={router.path}>{router.name}</Link>
+                    </Menu.Item>
+                );
+            }
+        });
+        return result;
     };
 
     render() {
@@ -39,34 +68,7 @@ class HomePage extends React.Component {
                         defaultSelectedKeys={["1"]}
                         mode="inline"
                     >
-                        <Menu.Item key="1" icon={<PieChartOutlined />}>
-                            <Link to="/option1">Option 1</Link>
-                        </Menu.Item>
-                        <Menu.Item key="2" icon={<DesktopOutlined />}>
-                            <Link to="/option2">Option 2</Link>
-                        </Menu.Item>
-                        <SubMenu
-                            key="sub1"
-                            icon={<UserOutlined />}
-                            title="User"
-                        >
-                            <Menu.Item key="3">
-                                <Link to="/tom">Tom</Link>
-                            </Menu.Item>
-                            <Menu.Item key="4">Bill</Menu.Item>
-                            <Menu.Item key="5">Alex</Menu.Item>
-                        </SubMenu>
-                        <SubMenu
-                            key="sub2"
-                            icon={<TeamOutlined />}
-                            title="Team"
-                        >
-                            <Menu.Item key="6">Team 1</Menu.Item>
-                            <Menu.Item key="8">Team 2</Menu.Item>
-                        </SubMenu>
-                        <Menu.Item key="9" icon={<FileOutlined />}>
-                            Files
-                        </Menu.Item>
+                        {this.menuElems()}
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">
@@ -80,9 +82,25 @@ class HomePage extends React.Component {
                             style={{ padding: 24, minHeight: 360 }}
                         >
                             <Switch>
-                                <Route path="/option1">Option1</Route>
-                                <Route path="/option2">Option2</Route>
-                                <Route path="/tom">Tom</Route>
+                                {routers.map((router) => {
+                                    if (router.children) {
+                                        return router.children.map(
+                                            (submenu) => {
+                                                return (
+                                                    <Route path={submenu.path}>
+                                                        {submenu.component}
+                                                    </Route>
+                                                );
+                                            }
+                                        );
+                                    } else {
+                                        return (
+                                            <Route path={router.path}>
+                                                {router.component}
+                                            </Route>
+                                        );
+                                    }
+                                })}
                                 <Route path="/">
                                     <Result
                                         status="404"
@@ -107,4 +125,4 @@ class HomePage extends React.Component {
     }
 }
 
-export default HomePage;
+export default DefaultLayout;

@@ -1,19 +1,20 @@
 import apis from "../apis";
 import { saveToken } from "../helper";
-import store from "../store";
+import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from "../constants/action-types";
 
-function loginAction(data) {
+const loginAction = (data) => (dispatch) => {
+    console.log("dispatch: ", dispatch, data);
     // notify login action start
-    store.dispatch({
-        type: "LOGIN",
+    dispatch({
+        type: LOGIN,
     });
     // call api login
     apis.login(data)
         .then((res) => {
             const { data } = res;
             if (data.success) {
-                store.dispatch({
-                    type: "LOGIN_SUCCESS",
+                dispatch({
+                    type: LOGIN_SUCCESS,
                     payload: {
                         token: data.token,
                         username: data.username,
@@ -22,8 +23,8 @@ function loginAction(data) {
                 saveToken(data.token);
                 window.location = "/"; // refresh - accepted
             } else {
-                store.dispatch({
-                    type: "LOGIN_FAIL",
+                dispatch({
+                    type: LOGIN_FAILED,
                     payload: {
                         message: data.message,
                     },
@@ -31,8 +32,8 @@ function loginAction(data) {
             }
         })
         .catch(() => {
-            store.dispatch({
-                type: "LOGIN_FAIL",
+            dispatch({
+                type: LOGIN_FAILED,
                 payload: {
                     message: "Something went wrong!!",
                 },
@@ -66,6 +67,6 @@ function loginAction(data) {
     //         });
     //     }
     // });
-}
+};
 
 export { loginAction };

@@ -1,3 +1,5 @@
+import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILED } from "../constants/action-types";
+
 var initialState = {
     isLoading: false,
     username: "",
@@ -5,12 +7,17 @@ var initialState = {
     errMessage: "",
 };
 
+// var state = {
+//     auth: initialState,
+//     students: initialStudent
+// }
+
 function authReducer(state = initialState, action) {
     console.log(state, action);
     switch (action.type) {
-        case "LOGIN":
+        case LOGIN:
             return { ...state, errMessage: "", isLoading: true };
-        case "LOGIN_SUCCESS":
+        case LOGIN_SUCCESS:
             return {
                 ...state,
                 isLoading: false,
@@ -18,7 +25,7 @@ function authReducer(state = initialState, action) {
                 token: action.payload.token,
             };
 
-        case "LOGIN_FAIL":
+        case LOGIN_FAILED:
             return {
                 ...state,
                 isLoading: false,

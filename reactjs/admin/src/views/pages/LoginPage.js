@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Card, Typography } from "antd";
+import { connect } from "react-redux";
 
-import store from "../../store";
 import { loginAction } from "../../actions";
 
 const layout = {
@@ -20,30 +20,16 @@ const tailLayout = {
 };
 
 class LoginPage extends Component {
-    state = {
-        isLoading: false,
-        errMessage: "",
-    };
-
-    componentDidMount() {
-        store.subscribe(() => {
-            console.log(store.getState());
-            this.setState({
-                isLoading: store.getState().isLoading,
-                errMessage: store.getState().errMessage,
-            });
-        });
-    }
-
     onFinish = (values) => {
         // console.log("Success:", values);
         // start action
-        loginAction(values);
+        this.props.loginAction(values);
     };
 
     onFinishFailed = (errorInfo) => {
         console.log("Failed:", errorInfo);
     };
+
     render() {
         return (
             <Card
@@ -103,7 +89,7 @@ class LoginPage extends Component {
                     </Form.Item>
                     <p style={{ textAlign: "center" }}>
                         <Typography.Text type="danger">
-                            {this.state.errMessage}
+                            {this.props.errMessage}
                         </Typography.Text>
                     </p>
 
@@ -111,7 +97,7 @@ class LoginPage extends Component {
                         <Button
                             type="primary"
                             htmlType="submit"
-                            loading={this.state.isLoading}
+                            loading={this.props.isLoading}
                         >
                             Submit
                         </Button>
@@ -122,4 +108,20 @@ class LoginPage extends Component {
     }
 }
 
-export default LoginPage;
+function mapStateToProps(state) {
+    console.log("State: ", state);
+    return {
+        isLoading: state.isLoading,
+        errMessage: state.errMessage,
+    };
+}
+
+export default connect(mapStateToProps, { loginAction })(LoginPage);
+
+// function mapDispatchToProp() {
+//     return {
+//         loginAction
+//     }
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProp())(LoginPage);
