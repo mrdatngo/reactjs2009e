@@ -24,33 +24,33 @@ class DefaultLayout extends React.Component {
         this.setState({ collapsed });
     };
 
-    menuElems = () => {
-        let result = [];
-        routers.forEach((router) => {
-            if (router.children) {
-                let submenuElems = [];
-                router.children.forEach((submenu) => {
-                    submenuElems.push(
-                        <Menu.Item key={submenu.path}>
-                            <Link to={submenu.path}>{submenu.name}</Link>
-                        </Menu.Item>
-                    );
-                });
-                result.push(
-                    <SubMenu key="sub1" icon={<UserOutlined />} title="User">
-                        {submenuElems}
-                    </SubMenu>
-                );
-            } else {
-                result.push(
-                    <Menu.Item key={router.path} icon={router.icon}>
-                        <Link to={router.path}>{router.name}</Link>
-                    </Menu.Item>
-                );
-            }
-        });
-        return result;
-    };
+    // menuElems = () => {
+    //     let result = [];
+    //     routers.forEach((router) => {
+    //         if (router.children) {
+    //             let submenuElems = [];
+    //             router.children.forEach((submenu) => {
+    //                 submenuElems.push(
+    //                     <Menu.Item key={submenu.path}>
+    //                         <Link to={submenu.path}>{submenu.name}</Link>
+    //                     </Menu.Item>
+    //                 );
+    //             });
+    //             result.push(
+    //                 <SubMenu key="sub1" icon={<UserOutlined />} title="User">
+    //                     {submenuElems}
+    //                 </SubMenu>
+    //             );
+    //         } else {
+    //             result.push(
+    //                 <Menu.Item key={router.path} icon={router.icon}>
+    //                     <Link to={router.path}>{router.name}</Link>
+    //                 </Menu.Item>
+    //             );
+    //         }
+    //     });
+    //     return result;
+    // };
 
     render() {
         const { collapsed } = this.state;
@@ -68,7 +68,31 @@ class DefaultLayout extends React.Component {
                         defaultSelectedKeys={["1"]}
                         mode="inline"
                     >
-                        {this.menuElems()}
+                        {/* {this.menuElems()} */}
+                        {routers.map((router) => {
+                            return router.children ? (
+                                <SubMenu
+                                    key="sub1"
+                                    icon={<UserOutlined />}
+                                    title="User"
+                                >
+                                    {router.children.map((submenu) => (
+                                        <Menu.Item
+                                            key={submenu.path}
+                                            icon={submenu.icon}
+                                        >
+                                            <Link to={submenu.path}>
+                                                {submenu.name}
+                                            </Link>
+                                        </Menu.Item>
+                                    ))}
+                                </SubMenu>
+                            ) : (
+                                <Menu.Item key={router.path} icon={router.icon}>
+                                    <Link to={router.path}>{router.name}</Link>
+                                </Menu.Item>
+                            );
+                        })}
                     </Menu>
                 </Sider>
                 <Layout className="site-layout">

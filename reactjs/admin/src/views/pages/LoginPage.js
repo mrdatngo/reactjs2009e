@@ -109,14 +109,15 @@ class LoginPage extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log("State: ", state);
     return {
-        isLoading: state.isLoading,
-        errMessage: state.errMessage,
+        isLoading: state.auth.isLoading,
+        errMessage: state.auth.errMessage,
     };
 }
 
-export default connect(mapStateToProps, { loginAction })(LoginPage);
+let ConnectLoginPage = connect(mapStateToProps, { loginAction })(LoginPage);
+
+export default ConnectLoginPage;
 
 // function mapDispatchToProp() {
 //     return {
