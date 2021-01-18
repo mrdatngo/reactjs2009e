@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import LoginPage from "./views/pages/LoginPage";
 import DefaultLayout from "./views/layouts/DefaultLayout";
+import PrivateRoute from "./views/router/PrivateRoute";
 
 function App() {
     return (
@@ -10,9 +11,9 @@ function App() {
                 <Route path="/login">
                     <LoginPage />
                 </Route>
-                <Route path="/">
+                <PrivateRoute path="/">
                     <DefaultLayout />
-                </Route>
+                </PrivateRoute>
             </Switch>
         </Router>
     );

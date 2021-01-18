@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Card, Typography } from "antd";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 import { loginAction } from "../../actions";
 
@@ -31,7 +32,9 @@ class LoginPage extends Component {
     };
 
     render() {
-        return (
+        return this.props.isLoggedIn ? (
+            <Redirect to="/dashboard" />
+        ) : (
             <Card
                 title="Login"
                 // extra={<a href="#">Forgot password</a>}
@@ -112,6 +115,7 @@ function mapStateToProps(state) {
     return {
         isLoading: state.auth.isLoading,
         errMessage: state.auth.errMessage,
+        isLoggedIn: state.auth.isLoggedIn,
     };
 }
 

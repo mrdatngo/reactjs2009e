@@ -21,7 +21,7 @@ const loginAction = (data) => (dispatch) => {
                     },
                 });
                 saveToken(data.token);
-                window.location = "/"; // refresh - accepted
+                // window.location = "/"; // refresh - accepted
             } else {
                 dispatch({
                     type: LOGIN_FAILED,

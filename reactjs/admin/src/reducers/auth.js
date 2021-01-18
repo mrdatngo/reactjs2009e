@@ -5,15 +5,10 @@ var initialState = {
     username: "",
     token: "",
     errMessage: "",
+    isLoggedIn: false,
 };
 
-// var state = {
-//     auth: initialState,
-//     students: initialStudent
-// }
-
 function authReducer(state = initialState, action) {
-    console.log(state, action);
     switch (action.type) {
         case LOGIN:
             return { ...state, errMessage: "", isLoading: true };
@@ -23,6 +18,7 @@ function authReducer(state = initialState, action) {
                 isLoading: false,
                 username: action.payload.username,
                 token: action.payload.token,
+                isLoggedIn: true,
             };
 
         case LOGIN_FAILED:

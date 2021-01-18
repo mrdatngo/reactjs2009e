@@ -17,6 +17,7 @@ const { SubMenu } = Menu;
 class DefaultLayout extends React.Component {
     state = {
         collapsed: false,
+        location: window.location.pathname,
     };
 
     onCollapse = (collapsed) => {
@@ -65,7 +66,7 @@ class DefaultLayout extends React.Component {
                     {/* <div className="logo" /> */}
                     <Menu
                         theme="dark"
-                        defaultSelectedKeys={["1"]}
+                        defaultSelectedKeys={[this.state.location]}
                         mode="inline"
                     >
                         {/* {this.menuElems()} */}
@@ -74,7 +75,7 @@ class DefaultLayout extends React.Component {
                                 <SubMenu
                                     key="sub1"
                                     icon={<UserOutlined />}
-                                    title="User"
+                                    title={router.name}
                                 >
                                     {router.children.map((submenu) => (
                                         <Menu.Item
@@ -111,7 +112,10 @@ class DefaultLayout extends React.Component {
                                         return router.children.map(
                                             (submenu) => {
                                                 return (
-                                                    <Route path={submenu.path}>
+                                                    <Route
+                                                        key={submenu.path}
+                                                        path={submenu.path}
+                                                    >
                                                         {submenu.component}
                                                     </Route>
                                                 );
@@ -119,7 +123,10 @@ class DefaultLayout extends React.Component {
                                         );
                                     } else {
                                         return (
-                                            <Route path={router.path}>
+                                            <Route
+                                                key={router.path}
+                                                path={router.path}
+                                            >
                                                 {router.component}
                                             </Route>
                                         );

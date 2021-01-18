@@ -1,12 +1,30 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+import jwt from "jsonwebtoken";
+
+import store from "./store";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { getToken } from "./helper";
+import { LOGIN_SUCCESS } from "./constants/action-types";
 
-import { Provider } from "react-redux";
+let token = getToken();
 
-import store from "./store";
+if (token) {
+    let pubData = jwt.decode(token);
+    let now = new Date().getTime() / 1000; // timestamp in seconds
+    if (pubData && pubData.exp > now) {
+        store.dispatch({
+            type: LOGIN_SUCCESS,
+            payload: {
+                token: token,
+                username: pubData.username,
+            },
+        });
+    }
+}
 
 ReactDOM.render(
     // <React.StrictMode>

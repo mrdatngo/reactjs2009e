@@ -5,6 +5,8 @@ import {
     TeamOutlined,
     UserOutlined,
 } from "@ant-design/icons";
+import ListStudent from "./views/components/ListStudent";
+import AddStudent from "./views/components/AddStudent";
 
 let routers = [
     {
@@ -20,20 +22,20 @@ let routers = [
         component: <h3>Option 2</h3>,
     },
     {
-        name: "User",
+        name: "Students",
         icon: <UserOutlined />,
         children: [
             {
-                name: "Tom",
+                name: "Student List",
                 icon: <FileOutlined />,
-                path: "/user/tom",
-                component: <h2>TOM</h2>,
+                path: "/student/list",
+                component: <ListStudent />,
             },
             {
-                name: "Bill",
+                name: "Add Student",
                 icon: <FileOutlined />,
-                path: "/user/bill",
-                component: <h2>Bill</h2>,
+                path: "/student/add",
+                component: <AddStudent />,
             },
         ],
     },
