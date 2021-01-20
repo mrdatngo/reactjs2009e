@@ -49,25 +49,6 @@ const columns = [
     },
 ];
 
-const data = [
-    {
-        id: "RJ1",
-        first_name: "Anh",
-        last_name: "Tu",
-        age: 20,
-        class: "REACT2009E",
-        email: "anhtu@gmail.com",
-    },
-    {
-        id: "RJ2",
-        first_name: "Huynh",
-        last_name: "Minh Thang",
-        age: 20,
-        class: "REACT2009E",
-        email: "thang@gmail.com",
-    },
-];
-
 class ListStudent extends Component {
     componentDidMount() {
         // load student by api
@@ -75,16 +56,23 @@ class ListStudent extends Component {
     }
 
     render() {
+        let { list } = this.props;
         return (
             <>
-                <Table columns={columns} dataSource={data} />
+                <Table
+                    loading={list.isLoading}
+                    columns={columns}
+                    dataSource={list.students}
+                />
             </>
         );
     }
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        list: state.students.list,
+    };
 }
 
 export default connect(mapStateToProps, { fetchStudentsAction })(ListStudent);
