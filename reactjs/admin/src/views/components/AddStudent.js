@@ -12,87 +12,71 @@ import {
     Switch,
 } from "antd";
 
-export default function AddStudent() {
-    const [componentSize, setComponentSize] = useState("default");
+const tailLayout = {
+    wrapperCol: {
+        offset: 8,
+        span: 16,
+    },
+};
 
-    const onFormLayoutChange = ({ size }) => {
-        setComponentSize(size);
+export default function AddStudent() {
+    const [id, setId] = useState("");
+    const [name, setName] = useState("");
+    const [age, setAge] = useState(19);
+    const [email, setEmail] = useState("");
+
+    const onIdChange = (event) => {
+        setId(event.target.value);
+    };
+
+    const onNameChange = (event) => {
+        setName(event.target.value);
+    };
+
+    const onAgeChange = (value) => {
+        // setAge(event.target.value);
+        setAge(Number(value));
+    };
+
+    const onEmailChange = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const submit = () => {
+        console.log("Send data to server:", id, name, age, email);
     };
 
     return (
         <>
             <Form
-                labelCol={{
+                labelCol={{ 
                     span: 4,
                 }}
                 wrapperCol={{
                     span: 14,
                 }}
                 layout="horizontal"
-                initialValues={{
-                    size: componentSize,
-                }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize}
             >
-                <Form.Item label="Form Size" name="size">
-                    <Radio.Group>
-                        <Radio.Button value="small">Small</Radio.Button>
-                        <Radio.Button value="default">Default</Radio.Button>
-                        <Radio.Button value="large">Large</Radio.Button>
-                    </Radio.Group>
+                <Form.Item label="Id">
+                    <Input value={id} onChange={onIdChange} />
                 </Form.Item>
-                <Form.Item label="Input">
-                    <Input />
+                <Form.Item label="Name">
+                    <Input value={name} onChange={onNameChange} />
                 </Form.Item>
-                <Form.Item label="Select">
-                    <Select>
-                        <Select.Option value="demo">Demo</Select.Option>
+                <Form.Item label="Age">
+                    <Select onChange={onAgeChange} defaultValue={age}>
+                        <Select.Option value="19">19</Select.Option>
+                        <Select.Option value="20">20</Select.Option>
+                        <Select.Option value="21">21</Select.Option>
                     </Select>
                 </Form.Item>
-                <Form.Item label="TreeSelect">
-                    <TreeSelect
-                        treeData={[
-                            {
-                                title: "Light",
-                                value: "light",
-                                children: [
-                                    {
-                                        title: "Bamboo",
-                                        value: "bamboo",
-                                    },
-                                ],
-                            },
-                        ]}
-                    />
+                <Form.Item label="Email">
+                    <Input value={email} onChange={onEmailChange} />
                 </Form.Item>
-                <Form.Item label="Cascader">
-                    <Cascader
-                        options={[
-                            {
-                                value: "zhejiang",
-                                label: "Zhejiang",
-                                children: [
-                                    {
-                                        value: "hangzhou",
-                                        label: "Hangzhou",
-                                    },
-                                ],
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item label="DatePicker">
-                    <DatePicker />
-                </Form.Item>
-                <Form.Item label="InputNumber">
-                    <InputNumber />
-                </Form.Item>
-                <Form.Item label="Switch">
-                    <Switch />
-                </Form.Item>
-                <Form.Item label="Button">
-                    <Button>Button</Button>
+                <Form.Item {...tailLayout}>
+                    <Button onClick={submit} htmlType="submit">
+                        Add student
+                    </Button>
                 </Form.Item>
             </Form>
         </>

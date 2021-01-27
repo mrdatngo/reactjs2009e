@@ -7,6 +7,8 @@ import {
 } from "@ant-design/icons";
 import ListStudent from "./views/components/ListStudent";
 import AddStudent from "./views/components/AddStudent";
+import Hook from "./views/components/Hook";
+import ClassComponent from "./views/components/ClassComponent";
 
 let routers = [
     {
@@ -16,10 +18,16 @@ let routers = [
         component: <h3>Dashboard</h3>,
     },
     {
-        name: "Option 2",
+        name: "Hook",
         icon: <PieChartOutlined />,
-        path: "/option2",
-        component: <h3>Option 2</h3>,
+        path: "/hook",
+        component: <Hook />,
+    },
+    {
+        name: "Class Component",
+        icon: <PieChartOutlined />,
+        path: "/classcomponent",
+        component: <ClassComponent />,
     },
     {
         name: "Students",
