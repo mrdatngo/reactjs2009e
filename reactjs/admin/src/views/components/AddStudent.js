@@ -1,16 +1,9 @@
 import React, { useState } from "react";
-import {
-    Form,
-    Input,
-    Button,
-    Radio,
-    Select,
-    Cascader,
-    DatePicker,
-    InputNumber,
-    TreeSelect,
-    Switch,
-} from "antd";
+import { Form, Input, Button, Select, Typography } from "antd";
+import { connect } from "react-redux";
+import { addStudentAction } from "../../actions/students";
+
+const { Text } = Typography;
 
 const tailLayout = {
     wrapperCol: {
@@ -19,7 +12,7 @@ const tailLayout = {
     },
 };
 
-export default function AddStudent() {
+function AddStudent({ addStudentAction, add }) {
     const [id, setId] = useState("");
     const [name, setName] = useState("");
     const [age, setAge] = useState(19);
@@ -44,12 +37,13 @@ export default function AddStudent() {
 
     const submit = () => {
         console.log("Send data to server:", id, name, age, email);
+        addStudentAction({ id, name, age, email });
     };
 
     return (
         <>
             <Form
-                labelCol={{ 
+                labelCol={{
                     span: 4,
                 }}
                 wrapperCol={{
@@ -73,8 +67,19 @@ export default function AddStudent() {
                 <Form.Item label="Email">
                     <Input value={email} onChange={onEmailChange} />
                 </Form.Item>
+                {add.message && (
+                    <Form.Item label="Error">
+                        <Text type={add.success ? "success" : "danger"}>
+                            {add.message}
+                        </Text>
+                    </Form.Item>
+                )}
                 <Form.Item {...tailLayout}>
-                    <Button onClick={submit} htmlType="submit">
+                    <Button
+                        loading={add.isLoading}
+                        onClick={submit}
+                        htmlType="submit"
+                    >
                         Add student
                     </Button>
                 </Form.Item>
@@ -82,3 +87,11 @@ export default function AddStudent() {
         </>
     );
 }
+
+function mapStateToProps(state) {
+    return {
+        add: state.students.add,
+    };
+}
+
+export default connect(mapStateToProps, { addStudentAction })(AddStudent);

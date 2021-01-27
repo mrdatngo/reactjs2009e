@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Table, Tag, Space } from "antd";
+import { Table, Tag, Space, Input } from "antd";
 import { connect } from "react-redux";
 import { fetchStudentsAction } from "../../actions";
+
+const { Search } = Input;
 
 const columns = [
     {
@@ -50,19 +52,48 @@ const columns = [
 ];
 
 class ListStudent extends Component {
+    state = {
+        keyword: "",
+        pageSize: 5,
+        current: 1,
+        total: 0,
+    };
     componentDidMount() {
         // load student by api
-        this.props.fetchStudentsAction();
+        let { keyword, pageSize, current } = this.state;
+        this.props.fetchStudentsAction({ keyword, pageSize, current });
     }
+
+    onSearch = (value) => {
+        console.log("value: ", value);
+    };
+
+    onPageChange = (current) => {
+        let { keyword, pageSize } = this.state;
+        this.props.fetchStudentsAction({ keyword, pageSize, current });
+        this.setState({ current });
+    };
 
     render() {
         let { list } = this.props;
+        let { pageSize, current, total } = this.state;
         return (
             <>
+                <Search
+                    placeholder="input search text"
+                    onSearch={this.onSearch}
+                    style={{ width: 200 }}
+                />
                 <Table
                     loading={list.isLoading}
                     columns={columns}
                     dataSource={list.students}
+                    pagination={{
+                        pageSize,
+                        current,
+                        total: list.total,
+                        onChange: this.onPageChange,
+                    }}
                 />
             </>
         );

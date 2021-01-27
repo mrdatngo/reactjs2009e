@@ -8,6 +8,11 @@ export default {
     },
     // students
     getStudents: (data) => {
-        return axios.get("http://localhost:8080/api/students/list");
+        return axios.get(
+            `http://localhost:8080/api/students/list?keyword=${data.keyword}&pageSize=${data.pageSize}&current=${data.current}`
+        );
+    },
+    addStudent: (data) => {
+        return axios.post("http://localhost:8080/api/students/add", data);
     },
 };
